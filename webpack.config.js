@@ -9,9 +9,10 @@ const PATHS = {
 }
 
 module.exports = {
+	context: PATHS.app,
 	entry: [
 		'react-hot-loader/patch',
-		'webpack-dev-server/client?http://0.0.0.0:8080',
+		'webpack-dev-server/client?http://0.0.0.0:8081',
 		'webpack/hot/only-dev-server',
 		'./index.js'
 	],
@@ -20,11 +21,10 @@ module.exports = {
 		path: PATHS.build,
 		publicPath: '/'
 	},
-	context: PATHS.app,
 	devtool: 'eval-source-map',
 	devServer: {
 		host: '0.0.0.0',
-		port: 8080,
+		port: 8081,
 		hot: true,
 		contentBase: PATHS.build,
 		publicPath: '/'
@@ -32,10 +32,14 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				enforce: 'pre',
 				test: /\.js$/,
-				use: [
-					'babel-loader',
-				],
+				use: ['eslint-loader'],
+				include: PATHS.app
+			},
+			{
+				test: /\.js$/,
+				use: ['babel-loader'],
 				include: PATHS.app
 			},
 			{
