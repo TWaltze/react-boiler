@@ -33,6 +33,7 @@ module.exports = {
 			"CallExpression": {
 				"arguments": 1
 			}
-		}]
+		}],
+		"react/jsx-indent": [2, "tab"],
 	}
 };
