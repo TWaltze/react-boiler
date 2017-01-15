@@ -16,8 +16,6 @@ const PATHS = {
 const sharedConfig = {
 	context: PATHS.app,
 	entry: [
-		'react-hot-loader/patch',
-		'webpack-hot-middleware/client',
 		'./index.js'
 	],
 	output: {
@@ -56,18 +54,28 @@ const sharedConfig = {
 	},
 	plugins: [
 		new webpack.NamedModulesPlugin(),
-		new webpack.optimize.OccurrenceOrderPlugin(true),
 		new HtmlWebpackPlugin({
 			template: './index.html'
-		})
+		}),
+		// new webpack.optimize.CommonsChunkPlugin({
+		// 	name: 'vendor',
+		// 	minChunks: Infinity,
+		// 	filename: 'vendor.bundle.js'
+		// }),
 	]
 };
 
+function customizer(objValue, srcValue) {
+	if (_.isArray(objValue)) {
+		return srcValue.concat(objValue);
+	}
+}
+
 let config = null;
 if (isProduction) {
-	config = _.merge(sharedConfig, webpackProd);
+	config = _.mergeWith(sharedConfig, webpackProd, customizer);
 } else {
-	config = _.merge(sharedConfig, webpackDev);
+	config = _.mergeWith(sharedConfig, webpackDev, customizer);
 }
 
 module.exports = config;
