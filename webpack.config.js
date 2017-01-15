@@ -12,8 +12,7 @@ module.exports = {
 	context: PATHS.app,
 	entry: [
 		'react-hot-loader/patch',
-		'webpack-dev-server/client?http://0.0.0.0:8081',
-		'webpack/hot/only-dev-server',
+		'webpack-hot-middleware/client',
 		'./index.js'
 	],
 	output: {
@@ -22,13 +21,13 @@ module.exports = {
 		publicPath: '/'
 	},
 	devtool: 'eval-source-map',
-	devServer: {
-		host: '0.0.0.0',
-		port: 8081,
-		hot: true,
-		contentBase: PATHS.build,
-		publicPath: '/'
-	},
+	// devServer: {
+	// 	host: '0.0.0.0',
+	// 	port: 8081,
+	// 	hot: true,
+	// 	contentBase: PATHS.build,
+	// 	publicPath: '/'
+	// },
 	module: {
 		rules: [
 			{
@@ -56,9 +55,9 @@ module.exports = {
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
-		new HtmlWebpackPlugin({
-			template: './index.html'
-		}),
+		// new HtmlWebpackPlugin({
+		// 	template: './index.html'
+		// }),
 		new CleanWebpackPlugin([PATHS.build], {
 			"verbose": true
 		})
