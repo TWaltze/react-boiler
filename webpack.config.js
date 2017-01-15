@@ -55,9 +55,9 @@ module.exports = {
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
-		// new HtmlWebpackPlugin({
-		// 	template: './index.html'
-		// }),
+		new HtmlWebpackPlugin({
+			template: './index.html'
+		}),
 		new CleanWebpackPlugin([PATHS.build], {
 			"verbose": true
 		})
