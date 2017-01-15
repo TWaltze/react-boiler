@@ -15,11 +15,12 @@ const PATHS = {
 
 const sharedConfig = {
 	context: PATHS.app,
-	entry: [
-		'./index.js'
-	],
+	entry: {
+		app: ['./index.js'],
+		vendor: ['react']
+	},
 	output: {
-		filename: 'bundle.js',
+		filename: '[name].bundle.js',
 		path: PATHS.build,
 		publicPath: '/'
 	},
@@ -57,11 +58,10 @@ const sharedConfig = {
 		new HtmlWebpackPlugin({
 			template: './index.html'
 		}),
-		// new webpack.optimize.CommonsChunkPlugin({
-		// 	name: 'vendor',
-		// 	minChunks: Infinity,
-		// 	filename: 'vendor.bundle.js'
-		// }),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor',
+			minChunks: Infinity
+		}),
 	]
 };
 

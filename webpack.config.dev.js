@@ -9,10 +9,12 @@ const PATHS = {
 }
 
 module.exports = {
-	entry: [
-		'react-hot-loader/patch',
-		'webpack-hot-middleware/client'
-	],
+	entry: {
+		app: [
+			'react-hot-loader/patch',
+			'webpack-hot-middleware/client'
+		]
+	},
 	devtool: 'eval-source-map',
 	module: {
 		rules: [],
