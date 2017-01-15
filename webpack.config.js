@@ -1,14 +1,19 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
+const webpackDev = require('./webpack.config.dev');
+const webpackProd = require('./webpack.config.prod');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const _ = require('lodash');
+
+const isProduction = process.env.NODE_ENV === 'production' ? true : false;
 
 const PATHS = {
 	app: resolve(__dirname, 'src'),
 	build: resolve(__dirname, 'build')
 }
 
-module.exports = {
+const sharedConfig = {
 	context: PATHS.app,
 	entry: [
 		'react-hot-loader/patch',
@@ -20,7 +25,6 @@ module.exports = {
 		path: PATHS.build,
 		publicPath: '/'
 	},
-	devtool: 'eval-source-map',
 	module: {
 		rules: [
 			{
@@ -51,14 +55,19 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
 		new webpack.optimize.OccurrenceOrderPlugin(true),
 		new HtmlWebpackPlugin({
 			template: './index.html'
-		}),
-		new CleanWebpackPlugin([PATHS.build], {
-			"verbose": true
 		})
-	],
+	]
 };
+
+let config = null;
+if (isProduction) {
+	config = _.merge(sharedConfig, webpackProd);
+} else {
+	config = _.merge(sharedConfig, webpackDev);
+}
+
+module.exports = config;

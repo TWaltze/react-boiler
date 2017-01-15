@@ -1,15 +1,15 @@
 {
   "name": "react-boiler",
   "version": "1.0.0",
-  "description": "",
+  "description": "Boilerplate for ReactJS project with hot code reloading",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server",
-    "start": "webpack --env development --config webpack.config.js",
+    "start": "NODE_ENV=development node server.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Tyler Waltze <hello@tylerwaltze.com> (http://github.com/twaltze)",
+  "license": "MIT",
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.13.2",
@@ -24,7 +24,6 @@
     "eslint-config-airbnb-base": "^11.0.1",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
     "express": "^4.14.0",
     "html-webpack-plugin": "^2.26.0",
@@ -35,6 +34,7 @@
     "webpack-hot-middleware": "^2.15.0"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.6"
