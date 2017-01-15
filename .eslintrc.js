@@ -33,9 +33,6 @@ module.exports = {
 			"CallExpression": {
 				"arguments": 1
 			}
-		}],
-
-		"import/no-extraneous-dependencies": 0,
-		"global-require": 0
+		}]
 	}
 };

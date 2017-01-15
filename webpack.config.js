@@ -21,19 +21,17 @@ module.exports = {
 		publicPath: '/'
 	},
 	devtool: 'eval-source-map',
-	// devServer: {
-	// 	host: '0.0.0.0',
-	// 	port: 8081,
-	// 	hot: true,
-	// 	contentBase: PATHS.build,
-	// 	publicPath: '/'
-	// },
 	module: {
 		rules: [
 			{
 				enforce: 'pre',
 				test: /\.js$/,
-				use: ['eslint-loader'],
+				use: [{
+					loader: 'eslint-loader',
+					options: {
+						// failOnError: true
+					}
+				}],
 				include: PATHS.app
 			},
 			{
@@ -55,6 +53,7 @@ module.exports = {
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
+		new webpack.optimize.OccurrenceOrderPlugin(true),
 		new HtmlWebpackPlugin({
 			template: './index.html'
 		}),
