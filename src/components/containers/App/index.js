@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+// import { Match, Link } from 'react-router';
+// import Welcome from '../Welcome';
+// import Test from '../Test';
 
 class App extends Component {
 	render() {
 		return (
-			<div>
-				<Link to='/'>Home</Link>
-				<Link to='/test'>Test</Link>
-				{this.props.children}
-			</div>
+			<div>Home!</div>
 		);
 	}
 }
 
 App.propTypes = {
-	children: React.PropTypes.object.isRequired
+	// children: React.PropTypes.object.isRequired
+	pathname: React.PropTypes.string.isRequired
 };
 
 export default App;

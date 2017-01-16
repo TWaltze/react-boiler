@@ -1,15 +1,18 @@
 import React from 'react';
-import { IndexRoute, Route } from 'react-router';
+import { BrowserRouter, Match, Link } from 'react-router';
 import App from './components/containers/App';
 import Welcome from './components/containers/Welcome';
 import Test from './components/containers/Test';
 
 const routes = () => {
 	return (
-		<Route path='/' component={App}>
-			<IndexRoute component={Welcome} />
-			<Route path='test' component={Test} />
-		</Route>
+		<BrowserRouter>
+			<Link to='/welcome'>Home</Link> | <Link to='/test'>Test</Link>
+
+			<Match exactly pattern="/" component={App} />
+			<Match pattern="/welcome" component={Welcome} />
+			<Match pattern="/test" component={Test} />
+		</BrowserRouter>
 	);
 };
 
