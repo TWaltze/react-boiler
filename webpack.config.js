@@ -56,6 +56,25 @@ const sharedConfig = {
 				],
 				include: PATHS.app
 			},
+			{
+				test: /\.css$/,
+				use: [
+					'style-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							// Source map generates incorrect url
+							// http://stackoverflow.com/a/41651902
+							// https://github.com/webpack/css-loader/issues/280
+							// sourceMap: true
+						}
+					}
+				]
+			},
+			{
+				test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+				use: 'url-loader?limit=10000'
+			}
 		],
 	},
 	plugins: [
@@ -70,7 +89,7 @@ const sharedConfig = {
 	]
 };
 
-function customizer(objValue, srcValue) {
+function mergeArrays(objValue, srcValue) {
 	if (_.isArray(objValue)) {
 		return srcValue.concat(objValue);
 	}
@@ -78,9 +97,9 @@ function customizer(objValue, srcValue) {
 
 let config = null;
 if (isProduction) {
-	config = _.mergeWith(sharedConfig, webpackProd, customizer);
+	config = _.mergeWith(sharedConfig, webpackProd, mergeArrays);
 } else {
-	config = _.mergeWith(sharedConfig, webpackDev, customizer);
+	config = _.mergeWith(sharedConfig, webpackDev, mergeArrays);
 }
 
 module.exports = config;
