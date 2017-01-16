@@ -11,13 +11,13 @@ const GenericIcon = (props) => {
 	}
 
 	return (
-		<i {...props} className={classNames.join(' ')} />
+		<i className={classNames.join(' ')} />
 	);
 };
 
 GenericIcon.propTypes = {
 	type: React.PropTypes.string.isRequired,
-	fixedWidth: React.PropTypes.boolean
+	fixedWidth: React.PropTypes.bool
 };
 
 export const RightAngleIcon = (props) => {
