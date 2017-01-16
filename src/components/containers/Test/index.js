@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { RightAngleIcon } from '../../ui/icons';
 
-export default class Welcome extends Component {
+class Test extends Component {
 	render() {
 		return (
 			<div className='app'>
@@ -12,3 +12,8 @@ export default class Welcome extends Component {
 		);
 	}
 }
+
+Test.propTypes = {
+};
+
+export default Test;
