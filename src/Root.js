@@ -27,7 +27,6 @@ class Root extends Component {
 }
 
 Root.propTypes = {
-	// routes: React.PropTypes.func.isRequired
 };
 
 export default Root;
