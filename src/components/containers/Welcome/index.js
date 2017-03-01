@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Match, Link } from 'react-router';
+import { Route, Link } from 'react-router-dom';
 import { RightAngleIcon } from '../../ui/icons';
 import Test from '../Test';
 import './styles.less';
 
 class Welcome extends Component {
 	render() {
-		const pathname = this.props.pathname;
+		const pathname = this.props.match.path;
 
 		return (
 			<div className='app'>
@@ -15,14 +15,14 @@ class Welcome extends Component {
 				</h1>
 
 				<Link to={`${pathname}/nested`}>Nested</Link>
-				<Match pattern={`${pathname}/nested`} component={Test}/>
+				<Route path={`${pathname}/nested`} component={Test}/>
 			</div>
 		);
 	}
 }
 
 Welcome.propTypes = {
-	pathname: React.PropTypes.string.isRequired
+	match: React.PropTypes.object.isRequired
 };
 
 export default Welcome;

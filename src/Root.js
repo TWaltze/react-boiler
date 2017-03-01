@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Match } from 'react-router';
+import { BrowserRouter, Route } from 'react-router-dom';
 import store from './store';
 import App from './components/containers/App';
 
@@ -10,7 +10,7 @@ class Root extends Component {
 			<Provider store={store}>
 				<BrowserRouter>
 					<div>
-						<Match pattern="/" component={App} />
+						<Route path={'/'} component={App} />
 					</div>
 				</BrowserRouter>
 			</Provider>

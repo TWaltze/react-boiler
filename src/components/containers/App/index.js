@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Match, Link } from 'react-router';
+import { Route, Link } from 'react-router-dom';
 import Welcome from '../Welcome';
 import Test from '../Test';
 
@@ -9,15 +9,15 @@ class App extends Component {
 			<div>
 				<Link to={'/welcome'}>Welcome</Link> | <Link to={'/test'}>Test</Link>
 
-				<Match pattern={'/welcome'} component={Welcome}/>
-				<Match pattern={'/test'} component={Test}/>
+				<Route path={'/welcome'} component={Welcome}/>
+				<Route path={'/test'} component={Test}/>
 			</div>
 		);
 	}
 }
 
 App.propTypes = {
-	pathname: React.PropTypes.string.isRequired
+	match: React.PropTypes.object.isRequired
 };
 
 export default App;
