@@ -8,8 +8,9 @@ const _ = require('lodash');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const PATHS = {
-	app: resolve(__dirname, 'src'),
-	build: resolve(__dirname, 'build')
+	app: resolve(__dirname, '../src'),
+	build: resolve(__dirname, '../build'),
+	server: resolve(__dirname, '../server')
 };
 
 const sharedConfig = {
@@ -79,7 +80,7 @@ const sharedConfig = {
 	plugins: [
 		new webpack.NamedModulesPlugin(),
 		new HtmlWebpackPlugin({
-			template: './index.html'
+			template: resolve(PATHS.server, 'index.template.html')
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',
@@ -92,8 +93,6 @@ function mergeArrays(objValue, srcValue) {
 	if (_.isArray(objValue)) {
 		return srcValue.concat(objValue);
 	}
-
-	return null;
 }
 
 let config = null;

@@ -3,22 +3,18 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Root from './Root';
 
-const rootEl = document.getElementById('root');
-ReactDOM.render(
-	<AppContainer>
-		<Root />
-	</AppContainer>,
-	rootEl
-);
+const render = (Component) => {
+	ReactDOM.render(
+		<AppContainer>
+			<Component />
+		</AppContainer>,
+		document.getElementById('root')
+	);
+};
+
+render(Root);
 
 // Hot Module Replacement API
 if (module.hot) {
-	module.hot.accept('./Root', () => {
-		ReactDOM.render(
-			<AppContainer>
-				<Root />
-			</AppContainer>,
-			rootEl
-		);
-	});
+	module.hot.accept('./Root', () => { render(Root); });
 }
