@@ -3,15 +3,14 @@ const webpack = require('webpack');
 const webpackDev = require('./webpack.config.dev');
 const webpackProd = require('./webpack.config.prod');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const _ = require('lodash');
 
-const isProduction = process.env.NODE_ENV === 'production' ? true : false;
+const isProduction = process.env.NODE_ENV === 'production';
 
 const PATHS = {
 	app: resolve(__dirname, 'src'),
 	build: resolve(__dirname, 'build')
-}
+};
 
 const sharedConfig = {
 	context: PATHS.app,
@@ -52,7 +51,7 @@ const sharedConfig = {
 							sourceMap: true
 						}
 					},
-					'less-loader',
+					'less-loader'
 				],
 				include: PATHS.app
 			},
@@ -75,7 +74,7 @@ const sharedConfig = {
 				test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
 				use: 'url-loader?limit=10000'
 			}
-		],
+		]
 	},
 	plugins: [
 		new webpack.NamedModulesPlugin(),
@@ -85,7 +84,7 @@ const sharedConfig = {
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',
 			minChunks: Infinity
-		}),
+		})
 	]
 };
 
@@ -93,6 +92,8 @@ function mergeArrays(objValue, srcValue) {
 	if (_.isArray(objValue)) {
 		return srcValue.concat(objValue);
 	}
+
+	return null;
 }
 
 let config = null;
