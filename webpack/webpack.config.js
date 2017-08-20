@@ -63,6 +63,7 @@ const sharedConfig = {
 					{
 						loader: 'css-loader',
 						options: {
+							modules: true
 							// Source map generates incorrect url
 							// http://stackoverflow.com/a/41651902
 							// https://github.com/webpack/css-loader/issues/280

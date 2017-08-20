@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { RightAngleIcon } from '../../ui/icons';
 import Test from '../Test';
-import './styles.less';
+import styles from './styles.css';
 
 type Props = {
 	match: {
@@ -16,8 +16,8 @@ class Welcome extends Component<Props> {
 		const { path } = this.props.match;
 
 		return (
-			<div className='app'>
-				<h1 className='header'>
+			<div className={styles.app}>
+				<h1 className={styles.header}>
 					<RightAngleIcon fixedWidth={true} /> Hello, Tyler...
 				</h1>
 
