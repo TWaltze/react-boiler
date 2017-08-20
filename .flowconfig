@@ -1,0 +1,17 @@
+[ignore]
+.*/build/.*
+.*/webpack/.*
+.*/server/.*
+
+[include]
+src/
+node_modules/
+
+[libs]
+flow-typed/
+
+[lints]
+
+[options]
+module.name_mapper='.*\(.css\)' -> 'empty/object'
+module.name_mapper='.*\(.less\)' -> 'empty/object'

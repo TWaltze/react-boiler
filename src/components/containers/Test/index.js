@@ -1,7 +1,10 @@
+// @flow
 import React, { Component } from 'react';
 import { RightAngleIcon } from '../../ui/icons';
 
-class Test extends Component {
+type Props = {};
+
+class Test extends Component<Props> {
 	render() {
 		return (
 			<div className='app'>
@@ -12,8 +15,5 @@ class Test extends Component {
 		);
 	}
 }
-
-Test.propTypes = {
-};
 
 export default Test;

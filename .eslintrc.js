@@ -1,3 +1,7 @@
+const DISABLE = 0;
+const WARN = 1;
+const ERROR = 2;
+
 module.exports = {
 	root: true,
 	"extends": [
@@ -21,20 +25,21 @@ module.exports = {
 		"react"
 	],
 	"rules": {
-		"no-console": 0,
-		"class-methods-use-this": 0,
+		"no-console": DISABLE,
+		"class-methods-use-this": DISABLE,
 		"arrow-body-style": ["error", "always"],
 		"space-before-function-paren": ["error", "never"],
 		"comma-dangle": ["error", "never"],
-		"no-tabs": 0,
+		"no-tabs": DISABLE,
 		"indent": ["error", "tab", {
-			"ArrayExpression": 1,
-			"MemberExpression": 1,
-			"ObjectExpression": 1,
+			"ArrayExpression": WARN,
+			"MemberExpression": WARN,
+			"ObjectExpression": WARN,
 			"CallExpression": {
-				"arguments": 1
+				"arguments": WARN
 			}
 		}],
-		"react/jsx-indent": [2, "tab"],
+		"react/jsx-indent": [ERROR, "tab"],
+		"react/prop-types": DISABLE
 	}
 };

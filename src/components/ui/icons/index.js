@@ -1,9 +1,18 @@
+// @flow
 import React from 'react';
 import 'font-awesome/css/font-awesome.min.css';
 
-const GenericIcon = (props) => {
-	const type = props.type;
-	const fixedWidth = props.fixedWidth;
+type GenericIconProps = {
+	type: string,
+	fixedWidth?: boolean
+};
+
+type IconProps = {
+	fixedWidth?: boolean
+};
+
+const GenericIcon = (props: GenericIconProps) => {
+	const { type, fixedWidth } = props;
 
 	const classNames = ['fa', `fa-${type}`];
 	if (fixedWidth) {
@@ -15,18 +24,13 @@ const GenericIcon = (props) => {
 	);
 };
 
-GenericIcon.propTypes = {
-	type: React.PropTypes.string.isRequired,
-	fixedWidth: React.PropTypes.bool
-};
-
-export const RightAngleIcon = (props) => {
+export const RightAngleIcon = (props: IconProps) => {
 	return (
 		<GenericIcon {...props} type="angle-right" />
 	);
 };
 
-export const LeftAngleIcon = (props) => {
+export const LeftAngleIcon = (props: IconProps) => {
 	return (
 		<GenericIcon {...props} type="angle-left" />
 	);

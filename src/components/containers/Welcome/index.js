@@ -1,12 +1,19 @@
+// @flow
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { RightAngleIcon } from '../../ui/icons';
 import Test from '../Test';
 import './styles.less';
 
-class Welcome extends Component {
+type Props = {
+	match: {
+		path: string
+	}
+};
+
+class Welcome extends Component<Props> {
 	render() {
-		const pathname = this.props.match.path;
+		const { path } = this.props.match;
 
 		return (
 			<div className='app'>
@@ -14,15 +21,11 @@ class Welcome extends Component {
 					<RightAngleIcon fixedWidth={true} /> Hello, Tyler...
 				</h1>
 
-				<Link to={`${pathname}/nested`}>Nested</Link>
-				<Route path={`${pathname}/nested`} component={Test}/>
+				<Link to={`${path}/nested`}>Nested</Link>
+				<Route path={`${path}/nested`} component={Test}/>
 			</div>
 		);
 	}
 }
-
-Welcome.propTypes = {
-	match: React.PropTypes.object.isRequired
-};
 
 export default Welcome;
