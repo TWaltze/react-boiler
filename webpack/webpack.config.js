@@ -1,46 +1,45 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackDev = require('./webpack.config.dev');
 const webpackProd = require('./webpack.config.prod');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const paths = require('./paths');
 const _ = require('lodash');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const PATHS = {
-	app: resolve(__dirname, '../src'),
-	build: resolve(__dirname, '../build'),
-	server: resolve(__dirname, '../server')
-};
-
 const sharedConfig = {
-	context: PATHS.app,
+	context: paths.app,
+	resolve: {
+		modules: [
+			paths.app,
+			paths.node
+		],
+		extensions: [ '.jsx', '.js', '.json' ]
+	},
 	entry: {
 		app: ['./index.js'],
 		vendor: ['react']
 	},
 	output: {
 		filename: '[name].bundle.js',
-		path: PATHS.build,
+		path: paths.build,
 		publicPath: '/'
 	},
 	module: {
 		rules: [
 			{
 				enforce: 'pre',
-				test: /\.js$/,
+				test: /\.jsx?$/,
 				use: [{
-					loader: 'eslint-loader',
-					options: {
-						// failOnError: true
-					}
+					loader: 'eslint-loader'
 				}],
-				include: PATHS.app
+				include: paths.app
 			},
 			{
 				test: /\.js$/,
 				use: ['babel-loader'],
-				include: PATHS.app
+				include: paths.app
 			},
 			{
 				test: /\.less$/,
@@ -54,7 +53,7 @@ const sharedConfig = {
 					},
 					'less-loader'
 				],
-				include: PATHS.app
+				include: paths.app
 			},
 			{
 				test: /\.css$/,
@@ -81,7 +80,7 @@ const sharedConfig = {
 	plugins: [
 		new webpack.NamedModulesPlugin(),
 		new HtmlWebpackPlugin({
-			template: resolve(PATHS.server, 'index.template.html')
+			template: resolve(paths.server, 'index.template.html')
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',

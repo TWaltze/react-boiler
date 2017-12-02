@@ -24,6 +24,11 @@ module.exports = {
 		"import",
 		"react"
 	],
+	"settings": {
+		"import/resolver": {
+			"webpack": { "config": "webpack/webpack.config.js" }
+		}
+	},
 	"rules": {
 		"no-console": DISABLE,
 		"class-methods-use-this": DISABLE,
@@ -40,6 +45,8 @@ module.exports = {
 			}
 		}],
 		"react/jsx-indent": [ERROR, "tab"],
-		"react/prop-types": DISABLE
+		"react/prop-types": DISABLE,
+		"import/no-extraneous-dependencies": DISABLE,
+		"import/extensions": ERROR
 	}
 };

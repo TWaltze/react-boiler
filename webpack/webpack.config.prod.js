@@ -1,12 +1,7 @@
-const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
-const PATHS = {
-	app: resolve(__dirname, '../src'),
-	build: resolve(__dirname, '../build')
-}
+const paths = require('./paths');
 
 module.exports = {
 	devtool: 'cheap-module-source-map',
@@ -14,7 +9,7 @@ module.exports = {
 		rules: [],
 	},
 	plugins: [
-		new CleanWebpackPlugin([PATHS.build], {
+		new CleanWebpackPlugin([paths.build], {
 			"verbose": true
 		}),
 		new webpack.DefinePlugin({
