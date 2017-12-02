@@ -80,7 +80,7 @@ const sharedConfig = {
 	plugins: [
 		new webpack.NamedModulesPlugin(),
 		new HtmlWebpackPlugin({
-			template: resolve(paths.server, 'index.template.html')
+			template: resolve(paths.app, 'index.html')
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',
