@@ -10,10 +10,11 @@ class App extends Component<Props> {
 	render() {
 		return (
 			<div>
-				<Link to={'/welcome'}>Welcome</Link> | <Link to={'/test'}>Test</Link>
+				<Link to={'/welcome'}>{'Welcome'}</Link>{' | '}
+				<Link to={'/test'}>{'Test'}</Link>
 
-				<Route path={'/welcome'} component={Welcome}/>
-				<Route path={'/test'} component={Test}/>
+				<Route path={'/welcome'} component={Welcome} />
+				<Route path={'/test'} component={Test} />
 			</div>
 		);
 	}

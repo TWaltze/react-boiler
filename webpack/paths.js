@@ -1,3 +1,4 @@
+// @flow
 const { resolve } = require('path');
 
 const PATHS = {

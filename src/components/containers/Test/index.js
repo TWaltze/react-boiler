@@ -10,7 +10,7 @@ class Test extends Component<Props> {
 		return (
 			<div className={styles.app}>
 				<h1 className={styles.header}>
-					<RightAngleIcon fixedWidth={true} /> Testing.
+					<RightAngleIcon fixedWidth /> {'Testing.'}
 				</h1>
 			</div>
 		);

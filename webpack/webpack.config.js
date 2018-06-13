@@ -1,3 +1,4 @@
+// @flow
 const { resolve } = require('path');
 const webpackDev = require('./webpack.config.dev');
 const webpackProd = require('./webpack.config.prod');
@@ -42,7 +43,9 @@ const sharedConfig = {
 		]
 	},
 	plugins: [
-		new HtmlWebpackPlugin({ template: resolve(paths.server, 'index.template.html') })
+		new HtmlWebpackPlugin(
+			{ template: resolve(paths.server, 'index.template.html') }
+		)
 	]
 };
 

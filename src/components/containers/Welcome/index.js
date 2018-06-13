@@ -18,11 +18,11 @@ class Welcome extends Component<Props> {
 		return (
 			<div className={styles.app}>
 				<h1 className={styles.header}>
-					<RightAngleIcon fixedWidth={true} /> Hello, Tyler...
+					<RightAngleIcon fixedWidth /> {'Hello, Tyler...'}
 				</h1>
 
-				<Link to={`${path}/nested`}>Nested</Link>
-				<Route path={`${path}/nested`} component={Test}/>
+				<Link to={`${path}/nested`}>{'Nested'}</Link>
+				<Route path={`${path}/nested`} component={Test} />
 			</div>
 		);
 	}
