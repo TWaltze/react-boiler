@@ -1,58 +1,32 @@
 const { resolve } = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackDev = require('./webpack.config.dev');
 const webpackProd = require('./webpack.config.prod');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
 const paths = require('./paths');
-const _ = require('lodash');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 const sharedConfig = {
 	context: paths.app,
-	resolve: {
-		modules: [
-			paths.app,
-			paths.node
-		],
-		extensions: [ '.jsx', '.js', '.json' ]
-	},
-	entry: {
-		app: ['./index.js'],
-		vendor: ['react']
-	},
+	entry: { app: ['./index.js'] },
 	output: {
 		filename: '[name].bundle.js',
 		path: paths.build,
 		publicPath: '/'
 	},
+	resolve: { extensions: ['.js', '.jsx', '.json'] },
 	module: {
 		rules: [
 			{
 				enforce: 'pre',
 				test: /\.jsx?$/,
-				use: [{
-					loader: 'eslint-loader'
-				}],
+				use: [{ loader: 'eslint-loader' }],
 				include: paths.app
 			},
 			{
-				test: /\.js$/,
+				test: /\.jsx?$/,
 				use: ['babel-loader'],
-				include: paths.app
-			},
-			{
-				test: /\.less$/,
-				use: [
-					'style-loader',
-					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true
-						}
-					},
-					'less-loader'
-				],
 				include: paths.app
 			},
 			{
@@ -61,45 +35,22 @@ const sharedConfig = {
 					'style-loader',
 					{
 						loader: 'css-loader',
-						options: {
-							modules: true
-							// Source map generates incorrect url
-							// http://stackoverflow.com/a/41651902
-							// https://github.com/webpack/css-loader/issues/280
-							// sourceMap: true
-						}
+						options: { modules: true }
 					}
 				]
-			},
-			{
-				test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-				use: 'url-loader?limit=10000'
 			}
 		]
 	},
 	plugins: [
-		new webpack.NamedModulesPlugin(),
-		new HtmlWebpackPlugin({
-			template: resolve(paths.app, 'index.html')
-		}),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor',
-			minChunks: Infinity
-		})
+		new HtmlWebpackPlugin({ template: resolve(paths.server, 'index.template.html') })
 	]
 };
 
-function mergeArrays(objValue, srcValue) {
-	if (_.isArray(objValue)) {
-		return srcValue.concat(objValue);
-	}
-}
-
 let config = null;
 if (isProduction) {
-	config = _.mergeWith(sharedConfig, webpackProd, mergeArrays);
+	config = merge(sharedConfig, webpackProd);
 } else {
-	config = _.mergeWith(sharedConfig, webpackDev, mergeArrays);
+	config = merge(sharedConfig, webpackDev);
 }
 
 module.exports = config;

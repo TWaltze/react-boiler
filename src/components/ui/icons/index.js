@@ -1,9 +1,11 @@
 // @flow
 import React from 'react';
-import 'font-awesome/css/font-awesome.min.css';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faAngleRight from '@fortawesome/fontawesome-free-solid/faAngleRight';
+import faAngleLeft from '@fortawesome/fontawesome-free-solid/faAngleLeft';
 
 type GenericIconProps = {
-	type: string,
+	icon: any,
 	fixedWidth?: boolean
 };
 
@@ -12,26 +14,17 @@ type IconProps = {
 };
 
 const GenericIcon = (props: GenericIconProps) => {
-	const { type, fixedWidth } = props;
-
-	const classNames = ['fa', `fa-${type}`];
-	if (fixedWidth) {
-		classNames.push('fa-fw');
-	}
+	const { icon, fixedWidth } = props;
 
 	return (
-		<i className={classNames.join(' ')} />
+		<FontAwesomeIcon icon={icon} fixedWidth={fixedWidth} />
 	);
 };
 
-export const RightAngleIcon = (props: IconProps) => {
-	return (
-		<GenericIcon {...props} type="angle-right" />
-	);
-};
+export const RightAngleIcon = (props: IconProps) => (
+	<GenericIcon {...props} icon={faAngleRight} />
+);
 
-export const LeftAngleIcon = (props: IconProps) => {
-	return (
-		<GenericIcon {...props} type="angle-left" />
-	);
-};
+export const LeftAngleIcon = (props: IconProps) => (
+	<GenericIcon {...props} icon={faAngleLeft} />
+);

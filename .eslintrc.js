@@ -26,17 +26,22 @@ module.exports = {
 	],
 	"settings": {
 		"import/resolver": {
-			"webpack": { "config": "webpack/webpack.config.js" }
+			"webpack": {
+				"config": "webpack/webpack.config.js"
+			}
 		}
 	},
 	"rules": {
-		"no-console": DISABLE,
+		"no-console": WARN,
+		"quotes": [ERROR, "single"],
+		"radix": DISABLE,
 		"class-methods-use-this": DISABLE,
-		"arrow-body-style": ["error", "always"],
-		"space-before-function-paren": ["error", "never"],
-		"comma-dangle": ["error", "never"],
+		"arrow-body-style": DISABLE,
+		"space-before-function-paren": [ERROR, "never"],
+		"comma-dangle": [ERROR, "never"],
 		"no-tabs": DISABLE,
-		"indent": ["error", "tab", {
+		"object-curly-newline": [ERROR, { multiline: true }],
+		"indent": [ERROR, "tab", {
 			"ArrayExpression": WARN,
 			"MemberExpression": WARN,
 			"ObjectExpression": WARN,
@@ -46,7 +51,7 @@ module.exports = {
 		}],
 		"react/jsx-indent": [ERROR, "tab"],
 		"react/prop-types": DISABLE,
-		"import/no-extraneous-dependencies": DISABLE,
-		"import/extensions": ERROR
+		"import/no-unresolved": [ERROR, { commonjs: true, amd: true }],
+		"import/prefer-default-export": DISABLE
 	}
 };
